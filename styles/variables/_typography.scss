@@ -1,0 +1,48 @@
+@use '../mixins' as *;
+
+:root {
+  // Font Family variables are set in the fonts.js file
+
+  // Font Size
+  --fs-900: 2.25rem;
+  --fs-800: 1.75rem;
+  --fs-700: 1.5rem;
+  --fs-600: 1.25rem;
+  --fs-500: 1rem; // for nav links and link buttons
+  --fs-400: 1rem;
+  --fs-300: 0.875rem;
+
+  @include respond(tab) {
+    --fs-900: 3.75rem;
+    --fs-800: 3rem;
+    --fs-700: 2.25rem;
+    --fs-600: 1.75rem;
+    --fs-500: 1.25rem;
+  }
+
+  @include respond(laptop) {
+    --fs-900: 4.75rem;
+    --fs-800: 4rem;
+    --fs-700: 2.625rem;
+    --fs-600: 2rem;
+    --fs-500: 1.75rem;
+    --fs-400: 1.125rem;
+    --fs-300: 1rem;
+  }
+
+  @include respond(desktop) {
+    --fs-900: 7rem;
+    --fs-800: 4.5rem;
+    --fs-700: 3.25rem;
+    --fs-600: 2.25rem;
+  }
+
+  // Letter Spacing
+  --letter-spacing-wide: 0.1em;
+
+  // Font Weight
+
+  --font-weight-medium: 600;
+  --font-weight-bold: 800;
+}
+

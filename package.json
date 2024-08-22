@@ -1,0 +1,23 @@
+{
+  "name": "borofsky-basic",
+  "version": "1.0.0",
+  "description": "A boilerplate for Next.js with SCSS and Framer Motion",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "framer-motion": "^11.3.27",
+    "next": "14.2.5",
+    "react": "^18",
+    "react-dom": "^18",
+    "sass": "^1.77.8"
+  },
+  
+    "keywords": [],
+    "author": "Joel Borofsky",
+    "license": "ISC"
+  }
