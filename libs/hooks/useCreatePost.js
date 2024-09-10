@@ -1,4 +1,7 @@
 import { useState } from 'react'
+import { collection, addDoc } from 'firebase/firestore'
+import { ref, uploadBytes, getDownloadURL } from 'firebase/storage'
+import { db, storage } from '@/libs/firebase/firebase'
 
 export const useCreatePost = () => {
   const [title, setTitle] = useState('')
@@ -12,9 +15,12 @@ export const useCreatePost = () => {
   const [seoTitle, setSeoTitle] = useState('')
   const [seoDescription, setSeoDescription] = useState('')
   const [isFeatured, setIsFeatured] = useState(false)
+  const [loading, setLoading] = useState(false)
+  const [error, setError] = useState(null)
+  const [success, setSuccess] = useState(false)
 
   const handleInputChange = (e) => {
-    const { name, value, type, checked } = e.target || {} // Check if e.target exists
+    const { name, value, type, checked } = e.target || {}
     switch (name) {
       case 'title':
         setTitle(value)
@@ -54,22 +60,57 @@ export const useCreatePost = () => {
     setContent(value)
   }
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault()
-    // Submit logic here
-    console.log({
-      title,
-      slug,
-      description,
-      mainImage,
-      tags,
-      content,
-      publishDate,
-      isDraft,
-      seoTitle,
-      seoDescription,
-      isFeatured,
-    })
+    setLoading(true)
+    setError(null)
+    setSuccess(false)
+
+    try {
+      // Upload main image to Firebase Storage
+      let imageUrl = ''
+      if (mainImage) {
+        const storageRef = ref(storage, `blogImages/${mainImage.name}`)
+        await uploadBytes(storageRef, mainImage)
+        imageUrl = await getDownloadURL(storageRef)
+      }
+
+      // Submit blog post data to Firestore
+      await addDoc(collection(db, 'blogPosts'), {
+        title,
+        slug,
+        description,
+        mainImage: imageUrl, // Store image URL in Firestore
+        tags: tags.split(',').map((tag) => tag.trim()), // Store tags as an array
+        content,
+        publishDate,
+        isDraft,
+        seoTitle,
+        seoDescription,
+        isFeatured,
+        createdAt: new Date(),
+      })
+
+      setSuccess(true)
+      setLoading(false)
+
+      // Reset form
+      setTitle('')
+      setSlug('')
+      setDescription('')
+      setMainImage(null)
+      setTags('')
+      setContent('')
+      setPublishDate('')
+      setIsDraft(false)
+      setSeoTitle('')
+      setSeoDescription('')
+      setIsFeatured(false)
+    } catch (err) {
+      console.error('Error submitting post:', err)
+      setError('Failed to submit post. Please try again.')
+      setLoading(false)
+    }
   }
 
   return {
@@ -84,6 +125,9 @@ export const useCreatePost = () => {
     seoTitle,
     seoDescription,
     isFeatured,
+    loading,
+    error,
+    success,
     handleInputChange,
     handleFileChange,
     handleQuillChange,

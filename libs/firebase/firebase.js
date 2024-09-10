@@ -1,7 +1,11 @@
-import { initializeApp } from 'firebase/app'
-import { getAnalytics } from 'firebase/analytics'
-import { getFirestore } from 'firebase/firestore'
+// libs/firebase/firebase.js
 
+import { initializeApp, getApps, getApp } from 'firebase/app'
+import { getFirestore } from 'firebase/firestore'
+import { getAuth } from 'firebase/auth'
+import { getStorage } from 'firebase/storage'
+
+// Firebase config
 const firebaseConfig = {
   apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
   authDomain: process.env.NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN,
@@ -12,9 +16,17 @@ const firebaseConfig = {
   measurementId: process.env.NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID,
 }
 
-const app = initializeApp(firebaseConfig)
-const analytics = getAnalytics(app)
+// Only initialize Firebase in the client (browser environment)
+let firebaseApp
+if (typeof window !== 'undefined' && !getApps().length) {
+  firebaseApp = initializeApp(firebaseConfig)
+} else {
+  firebaseApp = getApp()
+}
 
-const db = getFirestore(app)
+// Firebase services
+const db = getFirestore(firebaseApp)
+const auth = getAuth(firebaseApp)
+const storage = getStorage(firebaseApp)
 
-export { db }
+export { db, auth, storage }
