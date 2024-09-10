@@ -2,6 +2,7 @@ import { playfairDisplay, openSans } from './fonts'
 import '../styles/globals.scss'
 import { ThemeProvider } from 'next-themes'
 import Header from '@/components/layout/header/Header'
+import Footer from '@/components/layout/footer/Footer'
 
 const header = playfairDisplay
 const body = openSans
@@ -19,6 +20,7 @@ export default function RootLayout({ children }) {
         <ThemeProvider>
           <Header />
           {children}
+          <Footer />
           </ThemeProvider>
       </body>
     </html>
