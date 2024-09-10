@@ -12,4 +12,8 @@
   --spacing-100: 0.5rem;
 
   --standard-width: calc(100% - var(--spacing-800));
+
+  @include breakpoint(laptop) {
+    --spacing-800: 8rem;
+  }
 }

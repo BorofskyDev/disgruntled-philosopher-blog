@@ -1,0 +1,45 @@
+.navLink {
+  position: relative;
+  height: 100%;
+  padding: var(--spacing-100) 0;
+  font-size: var(--fs-500);
+  font-weight: var(--fw-600);
+  letter-spacing: var(--letter-spacing-narrow);
+  color: hsl(var(--primary-color));
+  display: flex;
+  justify-content: center;
+  transition: var(--transition-main);
+
+  &::before,
+  &::after {
+    content: '';
+    position: absolute;
+    height: 0.125rem;
+    width: 100%;
+    background-color: hsl(var(--primary-color));
+    transition: inherit;
+  }
+
+  &::before {
+    top: 0;
+    left: 0;
+    transform: scaleX(0);
+  }
+
+  &::after {
+    bottom: -0.125rem;
+    right: 0;
+    transform: scaleX(0);
+  }
+
+  &:hover,
+  &:focus {
+    color: hsl(var(--secondary-color));
+
+    &::before,
+    &::after {
+      transform: scaleX(1);
+      background-color: hsl(var(--secondary-color));
+    }
+  }
+}

@@ -1,0 +1,57 @@
+@use '../../../../../styles/mixins' as *;
+
+.navMenu {
+    position: fixed;
+    top: 50%;
+    left: -50%;
+    height: 60%;
+    width: var(--standard-width);
+    transform: translate(-50%, -25%);
+    margin: 0 auto;
+    padding: var(--spacing-900);
+    border: var(--border-200);
+    border-radius: var(--border-radius-2);
+    box-shadow: var(--box-shadow-sm);
+    background-color: hsl(var(--background-color-2));
+    display: grid;
+    place-content: center;
+    transition: var(--transition-main);
+    z-index: -1;
+
+    @include breakpoint(tab) {
+        position: relative;
+        top: 0;
+        left: 0;
+        width: 80%;
+        padding: 0;
+        transform: translate(0, 0);
+        background: none;
+        border: none;
+        box-shadow: none;
+        display: flex;
+        justify-content: left;
+    }
+
+    & ul {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: var(--spacing-600);
+
+        @include breakpoint(tab) {
+            width: 90%;
+            flex-direction: row;
+            justify-content: space-between;
+            gap: 0;
+        }
+    }
+}
+
+.open {
+   left: 50%;
+
+   @include breakpoint(tab) {
+    left: 0;
+   }
+}

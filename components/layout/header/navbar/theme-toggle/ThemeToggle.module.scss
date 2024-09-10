@@ -1,0 +1,11 @@
+.toggleButton {
+    padding: var(--spacing-100) var(--spacing-300);
+    display: grid;
+    place-content: center;
+    border: var(--border-100);
+    border-radius: var(--border-radius-4);
+    box-shadow: var(--box-shadow-xsm);
+    background-color: hsl(var(--background-color-2));
+    font-weight: var(--fw-900);
+    cursor: pointer;
+}

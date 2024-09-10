@@ -1,0 +1,25 @@
+@use '../../../../styles/mixins' as *;
+
+.navbar {
+    position: relative;
+    height: var(--spacing-800);
+    width: var(--standard-width);
+    margin: var(--spacing-200) auto;
+    padding: var(--spacing-200);
+    border: var(--border-100);
+    border-radius: var(--border-radius-2);
+    box-shadow: var(--box-shadow-sm);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    z-index: 10;
+
+    @include breakpoint(tab) {
+        margin: var(--spacing-300) auto;
+    }
+
+    @include breakpoint(laptop) {
+        margin: var(--spacing-600) auto;
+        
+    }
+}

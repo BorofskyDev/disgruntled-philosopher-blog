@@ -1,10 +1,11 @@
 import Banner from './banner/Banner'
-import styles from './Header.module.scss'
+import Navbar from './navbar/Navbar'
 
 function Header() {
   return (
-    <div className={styles.header}>
+    <div >
         <Banner />
+        <Navbar />
     </div>
   )
 }
