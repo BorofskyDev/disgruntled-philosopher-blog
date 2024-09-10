@@ -1,0 +1,35 @@
+@use '../../../../../styles/mixins' as *;
+
+.featuredPostToggle {
+  @include rowInput;
+
+  .featuredLabel {
+    width: 30%;
+    font-weight: var(--fw-600);
+  }
+
+  .toggleButton {
+    width: 4rem;
+    height: 4rem;
+    display: grid;
+    place-content: center;
+    background-color: hsl(var(--background-color-2)); 
+    border: var(--border-100);
+    border-radius: var(--border-radius-6);
+    box-shadow: var(--box-shadow-xsm);
+    cursor: pointer;
+    transition: background-color 0.2s;
+
+    .innerSquare {
+      width: 2rem;
+      height: 2rem;
+      border-radius: var(--border-radius-4);
+      background-color: hsl(var(--background-color-3)); // Default inner square color
+      transition: background-color 0.2s;
+    }
+
+    &.active .innerSquare {
+      background-color: hsl(var(--primary-color)); // Inner square when active
+    }
+  }
+}

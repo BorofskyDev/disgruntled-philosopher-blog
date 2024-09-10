@@ -1,0 +1,17 @@
+.createBlogPostComponent {
+    width: var(--standard-width);
+    margin: var(--spacing-600) auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: var(--spacing-400);
+
+    &__submitButton {
+        padding: var(--spacing-200) var(--spacing-400);
+        border: var(--border-100);
+        border-radius: var(--border-radius-3);
+        box-shadow: var(--box-shadow-xsm);
+        font-weight: var(--fw-900);
+    }
+}

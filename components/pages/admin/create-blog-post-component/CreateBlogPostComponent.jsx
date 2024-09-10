@@ -32,7 +32,7 @@ function CreateBlogPostComponent() {
   } = useCreatePost()
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form className={styles.createBlogPostComponent} onSubmit={handleSubmit}>
       <TitleInput value={title} onChange={handleInputChange} />
       <SlugInput value={slug} />
       <DescriptionInput value={description} onChange={handleInputChange} />
@@ -47,7 +47,7 @@ function CreateBlogPostComponent() {
         onChange={handleInputChange}
       />
       <FeaturedPostToggle value={isFeatured} onChange={handleInputChange} />
-      <button type='submit' className={styles.submitButton}>
+      <button type='submit' className={styles.createBlogPostComponent__submitButton}>
         {' '}
         Create Post{' '}
       </button>

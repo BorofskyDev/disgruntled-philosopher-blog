@@ -5,7 +5,7 @@ import styles from './QuillEditor.module.scss'
 const QuillEditor = ({ value, onChange }) => (
   <div className={styles.quillEditor}>
     <label htmlFor='content'>Content</label>
-    <ReactQuill value={value} onChange={onChange} />
+    <ReactQuill className={styles.quillEditor__container} value={value} onChange={onChange} />
   </div>
 )
 

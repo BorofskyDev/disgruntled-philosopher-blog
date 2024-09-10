@@ -1,0 +1,9 @@
+@use '../../../../../styles/mixins' as *;
+
+.seoMetaInput {
+    @include rowInput;
+}
+
+.seoMetaDescription {
+    @include columnTextArea
+}

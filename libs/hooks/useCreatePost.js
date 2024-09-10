@@ -11,7 +11,7 @@ export const useCreatePost = () => {
   const [tags, setTags] = useState('')
   const [content, setContent] = useState('')
   const [publishDate, setPublishDate] = useState('')
-  const [isDraft, setIsDraft] = useState(false)
+  const [isDraft, setIsDraft] = useState(true)
   const [seoTitle, setSeoTitle] = useState('')
   const [seoDescription, setSeoDescription] = useState('')
   const [isFeatured, setIsFeatured] = useState(false)
@@ -19,38 +19,54 @@ export const useCreatePost = () => {
   const [error, setError] = useState(null)
   const [success, setSuccess] = useState(false)
 
-  const handleInputChange = (e) => {
-    const { name, value, type, checked } = e.target || {}
-    switch (name) {
-      case 'title':
-        setTitle(value)
-        setSlug(value.replace(/[^a-z0-9]+/gi, '-').toLowerCase()) // Auto-generate slug
-        break
-      case 'description':
-        setDescription(value)
-        break
-      case 'tags':
-        setTags(value)
-        break
-      case 'publishDate':
-        setPublishDate(value)
-        break
-      case 'seoTitle':
-        setSeoTitle(value)
-        break
-      case 'seoDescription':
-        setSeoDescription(value)
-        break
-      case 'isDraft':
-        setIsDraft(checked)
-        break
-      case 'isFeatured':
-        setIsFeatured(checked)
-        break
-      default:
-        break
+  const handleInputChange = (eOrName, value) => {
+    if (typeof eOrName === 'string') {
+      // This means we're handling the toggle (DraftToggle or FeaturedPostToggle)
+      switch (eOrName) {
+        case 'isDraft':
+          setIsDraft(value)
+          break
+        case 'isFeatured':
+          setIsFeatured(value)
+          break
+        default:
+          break
+      }
+    } else {
+      // This means we're handling a regular input event
+      const { name, value, type, checked } = eOrName.target
+      switch (name) {
+        case 'title':
+          setTitle(value)
+          setSlug(value.replace(/[^a-z0-9]+/gi, '-').toLowerCase()) // Auto-generate slug
+          break
+        case 'description':
+          setDescription(value)
+          break
+        case 'tags':
+          setTags(value)
+          break
+        case 'publishDate':
+          setPublishDate(value)
+          break
+        case 'seoTitle':
+          setSeoTitle(value)
+          break
+        case 'seoDescription':
+          setSeoDescription(value)
+          break
+        case 'isDraft':
+          setIsDraft(checked) // Correctly update isDraft
+          break
+        case 'isFeatured':
+          setIsFeatured(checked) // Correctly update isFeatured
+          break
+        default:
+          break
+      }
     }
   }
+
 
   const handleFileChange = (e) => {
     setMainImage(e.target.files[0])
@@ -102,7 +118,7 @@ export const useCreatePost = () => {
       setTags('')
       setContent('')
       setPublishDate('')
-      setIsDraft(false)
+      setIsDraft(true)
       setSeoTitle('')
       setSeoDescription('')
       setIsFeatured(false)

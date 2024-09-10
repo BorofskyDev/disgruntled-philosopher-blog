@@ -1,0 +1,24 @@
+@mixin columnTextArea {
+     width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+
+    & label {
+        font-weight: var(--fw-600);
+        margin-bottom: var(--spacing-200);
+    }
+
+    & textArea {
+        width: 100%;
+        height: 16rem;
+        padding: var(--spacing-200);
+        border: var(--border-100);
+        border-radius: var(--border-radius-6);
+        box-shadow: var(--box-shadow-xsm);
+        background-color: hsl(var(--background-color-3));
+        font-size: var(--fs-400);
+
+    }
+}
