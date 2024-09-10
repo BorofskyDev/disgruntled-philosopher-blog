@@ -12,7 +12,7 @@
   --fs-400: 1rem;
   --fs-300: 0.875rem;
 
-  @include respond(tab) {
+  @include breakpoint(tab) {
     --fs-900: 3.75rem;
     --fs-800: 3rem;
     --fs-700: 2.25rem;
@@ -20,7 +20,7 @@
     --fs-500: 1.25rem;
   }
 
-  @include respond(laptop) {
+  @include breakpoint(laptop) {
     --fs-900: 4.75rem;
     --fs-800: 4rem;
     --fs-700: 2.625rem;
@@ -30,7 +30,7 @@
     --fs-300: 1rem;
   }
 
-  @include respond(desktop) {
+  @include breakpoint(desktop) {
     --fs-900: 7rem;
     --fs-800: 4.5rem;
     --fs-700: 3.25rem;

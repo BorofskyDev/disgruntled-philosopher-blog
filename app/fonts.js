@@ -1,6 +1,6 @@
 import { Playfair_Display, Open_Sans } from 'next/font/google'
 
-export const lato = playfair_Display({
+export const playfairDisplay = Playfair_Display({
   subsets: ['latin'],
   variable: '--font-heading',
   weight: ['400', '500', '600', '700', '800', '900'],
