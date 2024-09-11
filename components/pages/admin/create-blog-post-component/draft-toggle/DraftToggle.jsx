@@ -6,7 +6,11 @@ const DraftToggle = ({ value, onChange }) => (
     <button
       type='button'
       className={`${styles.toggleButton} ${value ? styles.active : ''}`}
-      onClick={() => onChange('isDraft', !value)} // Pass name and new value
+      onClick={() =>
+        onChange({
+          target: { name: 'isDraft', value: !value },
+        })
+      }
     >
       <div className={styles.innerSquare} />
     </button>

@@ -30,6 +30,7 @@
     border: var(--border-100);
     background-color: hsl(var(--background-color-2));
     border-radius: var(--border-radius-8);
+    
   }
 
   &__statusPublished {
@@ -38,10 +39,22 @@
     border: var(--border-100);
     background-color: hsl(var(--background-color-3));
     border-radius: var(--border-radius-8);
+   
   }
 
   &__btn {
     margin: 0 var(--spacing-100);
     padding: var(--spacing-100);
+    cursor: pointer;
+  }
+
+  &__btnEdt {
+    background-color: hsl(var(--primary-color));
+    color: hsl(var(--background-color-1));
+  }
+
+  &__btnDlt {
+    background-color: hsl(var(--secondary-color));
+    color: hsl(var(--background-color-1));
   }
 }
