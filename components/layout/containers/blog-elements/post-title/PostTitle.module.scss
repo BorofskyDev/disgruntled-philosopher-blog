@@ -1,0 +1,10 @@
+@use '../../../../../styles/mixins' as *;
+
+.postTitle {
+    width: 100%;
+    margin: var(--spacing-200) 0;
+    font-size: var(--fs-700);
+    line-height: 1.5;
+    text-transform: capitalize;
+    font-weight: var(--fw-800);
+}

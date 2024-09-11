@@ -1,0 +1,12 @@
+@use '../../../../styles/mixins' as *;
+
+.latestPost {
+    width: var(--standard-width);
+    max-width: 72rem;
+    margin: var(--spacing-800) auto;
+    padding: var(--spacing-400);
+    border: var(--border-300);
+    background-color: hsl(var(--background-color-2));
+    border-radius: var(--border-radius-4);
+    box-shadow: var(--box-shadow-md);
+}

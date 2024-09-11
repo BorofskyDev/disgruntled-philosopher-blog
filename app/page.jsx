@@ -1,5 +1,5 @@
 'use client'
-import LatestPost from "@/components/pages/main/latest-post/LatestPost";
+import LatestPost from "@/components/layout/containers/latest-post/LatestPost";
 import { motion } from "framer-motion";
 
 export default function Home() {

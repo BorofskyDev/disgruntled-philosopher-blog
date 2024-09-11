@@ -1,6 +1,8 @@
 import React from 'react'
 import { useFetchPublishedPosts } from '@/libs/hooks/useFetchPublishedPosts'
 import styles from './LatestPost.module.scss'
+import PostImage from '../blog-elements/post-image/PostImage'
+import PostTitle from '../blog-elements/post-title/PostTitle'
 
 function LatestPost() {
   const { posts, loading, error } = useFetchPublishedPosts()
@@ -21,13 +23,13 @@ function LatestPost() {
 
   return (
     <div className={styles.latestPost}>
-      <h2 className={styles.title}>{latestPost.title}</h2>
-      <img
+      <PostImage
         src={latestPost.mainImage}
         alt={latestPost.title}
-        className={styles.mainImage}
+        className={styles.latestPost__mainImage}
       />
-      <p className={styles.date}>
+      <PostTitle className={styles.latestPost__title}  title={latestPost.title} />
+      <p className={styles.latestPost__date}>
         Published on:{' '}
         {new Date(latestPost.publishDate.seconds * 1000).toLocaleDateString()}
       </p>
