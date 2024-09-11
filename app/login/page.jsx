@@ -1,16 +1,25 @@
-// app/login/page.jsx
 'use client'
 
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { auth } from '@/libs/firebase/firebase' // Import auth after firebase is initialized
-import { signInWithEmailAndPassword } from 'firebase/auth'
+import { signInWithEmailAndPassword, onAuthStateChanged } from 'firebase/auth'
 
 function LoginPage() {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [error, setError] = useState(null)
   const router = useRouter()
+
+  // Check if the user is already logged in
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      if (user) {
+        router.push('/admin') // Redirect to admin page if already logged in
+      }
+    })
+    return () => unsubscribe()
+  }, [router])
 
   const handleLogin = async (e) => {
     e.preventDefault()

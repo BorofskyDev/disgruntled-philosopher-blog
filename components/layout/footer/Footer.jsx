@@ -5,7 +5,7 @@ function Footer() {
   return (
     <footer className={styles.footer}>
       <p>&copy; {new Date().getFullYear()} The Disgruntled Philosopher</p>
-      <PageLink href='/admin'>Admin Login</PageLink>
+      <PageLink href='/login'>Admin Login</PageLink>
     </footer>
   )
 }
