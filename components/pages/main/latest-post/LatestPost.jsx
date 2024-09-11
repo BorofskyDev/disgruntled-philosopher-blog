@@ -1,10 +1,10 @@
+import React from 'react'
 import { useFetchPublishedPosts } from '@/libs/hooks/useFetchPublishedPosts'
 import styles from './LatestPost.module.scss'
 
 function LatestPost() {
   const { posts, loading, error } = useFetchPublishedPosts()
 
-  
   const latestPost = posts.length > 0 ? posts[0] : null
 
   if (loading) {
@@ -31,7 +31,17 @@ function LatestPost() {
         Published on:{' '}
         {new Date(latestPost.publishDate.seconds * 1000).toLocaleDateString()}
       </p>
-      <p className={styles.description}>{latestPost.description}</p>
+
+    
+      <p className={styles.description}>
+        {latestPost.description.split('<br/>').map((text, index) => (
+          <React.Fragment key={index}>
+            {text}
+            <br />
+          </React.Fragment>
+        ))}
+      </p>
+
       <div className={styles.tags}>
         {latestPost.tags?.map((tag, index) => (
           <span key={index} className={styles.tag}>

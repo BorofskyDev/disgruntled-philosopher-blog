@@ -68,26 +68,31 @@ export const useCreatePost = () => {
     // Convert publishDate from string to Firestore Timestamp
     const publishDateAsTimestamp = Timestamp.fromDate(new Date(publishedDate))
 
+    // Replace line breaks in the description with <br> tags
+    const formattedDescription = description.replace(/\n/g, '<br/>')
+
     try {
       await addDoc(collection(db, 'blogPosts'), {
         title,
         slug,
-        description,
+        description: formattedDescription, // Save description with <br> tags
         mainImage,
         tags,
         content,
-        publishDate: publishDateAsTimestamp, // Save the converted timestamp
+        publishDate: publishDateAsTimestamp, // Save as Timestamp
         isDraft,
         seoTitle,
         seoDescription,
         isFeatured,
       })
 
-      router.push('/admin') // Redirect to the admin page after creation
+      router.push('/admin') // Redirect after creation
     } catch (err) {
       console.error('Failed to create post:', err)
     }
   }
+
+
 
   return {
     title,

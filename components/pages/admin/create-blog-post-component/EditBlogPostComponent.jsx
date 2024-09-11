@@ -1,7 +1,7 @@
 'use client'
 import { useEffect, useState } from 'react'
 import { useRouter, useSearchParams } from 'next/navigation'
-import { doc, getDoc, updateDoc } from 'firebase/firestore'
+import { doc, getDoc, Timestamp, updateDoc } from 'firebase/firestore'
 import { db } from '@/libs/firebase/firebase'
 import TitleInput from './title-input/TitleInput'
 import SlugInput from './slug-input/SlugInput'
@@ -40,16 +40,25 @@ function EditBlogPostComponent() {
     fetchPost()
   }, [postId])
 
-  const handleSubmit = async (e) => {
-    e.preventDefault()
-    const docRef = doc(db, 'blogPosts', postId)
-    try {
-      await updateDoc(docRef, { ...post }) // Update post in Firebase
-      router.push('/admin') // Redirect to admin page after editing
-    } catch (err) {
-      console.error('Failed to update post:', err)
-    }
+const handleSubmit = async (e) => {
+  e.preventDefault()
+
+  // Convert publishDate from string to Firestore Timestamp
+  const publishDateAsTimestamp = Timestamp.fromDate(new Date(post.publishDate))
+
+  const docRef = doc(db, 'blogPosts', postId)
+  try {
+    await updateDoc(docRef, {
+      ...post,
+      publishDate: publishDateAsTimestamp, // Save as Timestamp
+    })
+
+    router.push('/admin') // Redirect after editing
+  } catch (err) {
+    console.error('Failed to update post:', err)
   }
+}
+
 
 const handleInputChange = (e) => {
   if (e && e.target) {
