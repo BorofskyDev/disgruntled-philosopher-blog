@@ -1,10 +1,12 @@
-.mainPostTitle {
-    padding: var(--spacing-100) var(--spacing-200);
+@use '../../../../../styles/mixins' as *;
+
+.postContent {
+    max-width: 48.75rem;
+    margin: 0 auto;
+    padding: var(--spacing-200);
     border: var(--border-100);
     border-radius: var(--border-radius-6);
     box-shadow: var(--box-shadow-xsm);
-    font-size: var(--fs-800);
-    text-transform: capitalize;
-    line-height: 1.25;
     background-color: hsl(var(--background-color-3));
+    line-height: 1.7;
 }

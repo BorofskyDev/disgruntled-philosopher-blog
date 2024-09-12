@@ -1,6 +1,5 @@
 'use client'
 
-import DOMPurify from 'dompurify'
 import { useFetchPost } from '@/libs/hooks/useFetchPost' // Use the correct hook for fetching a single post
 import { useParams } from 'next/navigation'
 import MainPostTitle from '@/components/layout/containers/blog-elements/main-post-title/MainPostTitle'
@@ -8,11 +7,11 @@ import PostImage from '@/components/layout/containers/blog-elements/post-image/P
 import PostDate from '@/components/layout/containers/blog-elements/post-date/PostDate'
 import PostTags from '@/components/layout/containers/blog-elements/post-tags/PostTags'
 import styles from './BlogPostComponent.module.scss'
+import PostContent from '@/components/layout/containers/blog-elements/post-content/PostContent'
 
 export default function BlogPostComponent() {
     const { slug } = useParams()
     const { post, loading, error } = useFetchPost(slug)
-    const cleanContent = DOMPurify.sanitize(post.content)
     
     if (loading) return <div>Loading...</div>
     if (error) return <div>{error}</div>
@@ -30,7 +29,7 @@ export default function BlogPostComponent() {
           <PostTags tags={post.tags} />
         </div>
       )}
-      <div dangerouslySetInnerHTML={{ __html: cleanContent }}></div>
+      <PostContent htmlContent={post.content} />
     </div>
   )
 }
