@@ -3,7 +3,7 @@ import styles from './ReadMoreBtn.module.scss'
 
 function ReadMoreBtn({ slug, title }) {
   return (
-    <Link href={`/app/blog/${slug}`} className={styles.readMoreBtn}>
+    <Link href={`/blog/${slug}`} className={styles.readMoreBtn}>
       Continue Reading <span>{title} </span>
     </Link>
   )

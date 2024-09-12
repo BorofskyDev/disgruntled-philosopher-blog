@@ -1,6 +1,5 @@
 'use client'
 import { useCreatePost } from '@/libs/hooks/useCreatePost'
-import { Timestamp } from 'firebase/firestore'
 import TitleInput from './title-input/TitleInput'
 import SlugInput from './slug-input/SlugInput'
 import DescriptionInput from './description-input/DescriptionInput'

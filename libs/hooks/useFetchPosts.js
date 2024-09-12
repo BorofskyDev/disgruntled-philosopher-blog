@@ -11,7 +11,6 @@ export const useFetchPosts = () => {
     const fetchPosts = async () => {
       setLoading(true)
       try {
-        // Query from the correct 'blogPosts' collection
         const q = query(
           collection(db, 'blogPosts'),
           orderBy('createdAt', 'desc')
