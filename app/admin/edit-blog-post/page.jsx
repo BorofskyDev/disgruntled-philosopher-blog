@@ -1,4 +1,4 @@
-'use client'
+
 
 import EditBlogPostComponent from "@/components/pages/admin/create-blog-post-component/EditBlogPostComponent"
 
