@@ -1,107 +1,125 @@
-'use client'
-
-import { useState, useEffect } from 'react'
-import { collection, addDoc } from 'firebase/firestore'
-import { db } from '@/libs/firebase/firebase'
-import { Timestamp } from 'firebase/firestore'
-import { useRouter } from 'next/navigation' // Using next/navigation for client-side routing
+import { useState, useEffect } from 'react';
+import { collection, addDoc } from 'firebase/firestore';
+import { db, storage } from '@/libs/firebase/firebase';
+import { Timestamp } from 'firebase/firestore';
+import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
+import { useRouter } from 'next/navigation';
 
 export const useCreatePost = () => {
-  const [title, setTitle] = useState('')
-  const [slug, setSlug] = useState('')
-  const [description, setDescription] = useState('')
-  const [mainImage, setMainImage] = useState('')
-  const [tags, setTags] = useState([])
-  const [content, setContent] = useState('')
-  const [publishedDate, setPublishedDate] = useState('')
-  const [isDraft, setIsDraft] = useState(true)
-  const [seoTitle, setSeoTitle] = useState('')
-  const [seoDescription, setSeoDescription] = useState('')
-  const [isFeatured, setIsFeatured] = useState(false)
+  const [title, setTitle] = useState('');
+  const [slug, setSlug] = useState('');
+  const [description, setDescription] = useState('');
+  const [mainImage, setMainImage] = useState(null);
+  const [tags, setTags] = useState([]);
+  const [content, setContent] = useState('');
+  const [publishedDate, setPublishedDate] = useState(''); // Storing as string for user input
+  const [isDraft, setIsDraft] = useState(true);
+  const [seoTitle, setSeoTitle] = useState('');
+  const [seoDescription, setSeoDescription] = useState('');
+  const [isFeatured, setIsFeatured] = useState(false);
 
-  // Using state to ensure the router is only used on the client
-  const [isClient, setIsClient] = useState(false)
-  const router = useRouter()
+  const router = useRouter();
 
+  // Automatically generate the slug when the title changes
   useEffect(() => {
-    setIsClient(true) // Set client flag to true after the component mounts
-  }, [])
+    const generatedSlug = title
+      .toLowerCase()
+      .replace(/[^a-z0-9\s-]/g, '') // Remove special characters
+      .trim()
+      .replace(/\s+/g, '-'); // Replace spaces with hyphens
+    setSlug(generatedSlug);
+  }, [title]);
 
+  // Handle form input changes
   const handleInputChange = (e) => {
-    const { name, value, type, checked } = e.target
+    const { name, value, type, checked } = e.target;
     switch (name) {
       case 'title':
-        setTitle(value)
-        break
+        setTitle(value);
+        break;
       case 'slug':
-        setSlug(value)
-        break
+        setSlug(value);
+        break;
       case 'description':
-        setDescription(value)
-        break
+        setDescription(value);
+        break;
       case 'tags':
-        setTags(value)
-        break
+        setTags(value.split(',').map((tag) => tag.trim())); // Handle tags
+        break;
       case 'isDraft':
-        setIsDraft(type === 'checkbox' ? checked : value)
-        break
+        setIsDraft(type === 'checkbox' ? checked : value);
+        break;
       case 'seoTitle':
-        setSeoTitle(value)
-        break
+        setSeoTitle(value);
+        break;
       case 'seoDescription':
-        setSeoDescription(value)
-        break
+        setSeoDescription(value);
+        break;
       case 'isFeatured':
-        setIsFeatured(type === 'checkbox' ? checked : value)
-        break
+        setIsFeatured(checked);
+        break;
       case 'publishedDate':
-        setPublishedDate(value)
-        break
+        // Ensure date is properly formatted as YYYY-MM-DD
+        setPublishedDate(value || ''); // Ensure empty date doesn't cause issues
+        break;
       default:
-        break
+        break;
     }
-  }
+  };
 
+  // Handle file input for mainImage
   const handleFileChange = (e) => {
-    setMainImage(e.target.files[0])
-  }
+    setMainImage(e.target.files[0]); // Capture the file
+  };
 
   const handleQuillChange = (value) => {
-    setContent(value)
-  }
+    setContent(value);
+  };
 
+  // Upload the image to Firebase Storage
+  const uploadImageAndGetUrl = async () => {
+    if (!mainImage) return ''; // Return an empty string if no image
+    const storageRef = ref(storage, `blogImages/${mainImage.name}`);
+    await uploadBytes(storageRef, mainImage);
+    return await getDownloadURL(storageRef); // Get the image URL after upload
+  };
+
+  // Handle form submission
   const handleSubmit = async (e) => {
-    e.preventDefault()
+    e.preventDefault();
 
-    // Convert publishDate from string to Firestore Timestamp
-    const publishDateAsTimestamp = Timestamp.fromDate(new Date(publishedDate))
+    const imageUrl = await uploadImageAndGetUrl();
 
-    // Replace line breaks in the description with <br> tags
-    const formattedDescription = description.replace(/\n/g, '<br/>')
+    // Convert publishDate to Firestore Timestamp if it's set
+    const publishDateAsTimestamp = publishedDate
+      ? Timestamp.fromDate(new Date(publishedDate)) // Ensure the correct format
+      : null;
+
+    const formattedDescription = description.replace(/\n/g, '<br/>');
 
     try {
+      // Add the post to Firestore
       await addDoc(collection(db, 'blogPosts'), {
         title,
         slug,
-        description: formattedDescription, // Save description with <br> tags
-        mainImage,
+        description: formattedDescription,
+        mainImage: imageUrl, // Store the image URL
         tags,
         content,
-        publishDate: publishDateAsTimestamp, // Save as Timestamp
+        publishDate: publishDateAsTimestamp, // Store the Timestamp
         isDraft,
         seoTitle,
         seoDescription,
         isFeatured,
-      })
+        createdAt: Timestamp.now(), // Add createdAt timestamp
+      });
 
-      // Ensure router push is only called on the client
-      if (isClient) {
-        router.push('/admin') // Redirect after creation
-      }
+      // Redirect to the admin page after submission
+      router.push('/admin');
     } catch (err) {
-      console.error('Failed to create post:', err)
+      console.error('Failed to create post:', err);
     }
-  }
+  };
 
   return {
     title,
@@ -119,5 +137,5 @@ export const useCreatePost = () => {
     handleFileChange,
     handleQuillChange,
     handleSubmit,
-  }
-}
+  };
+};

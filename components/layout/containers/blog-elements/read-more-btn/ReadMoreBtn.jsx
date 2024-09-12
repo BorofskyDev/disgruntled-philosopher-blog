@@ -4,7 +4,7 @@ import styles from './ReadMoreBtn.module.scss'
 function ReadMoreBtn({ slug, title }) {
   return (
     <Link href={`/blog/${slug}`} className={styles.readMoreBtn}>
-      Continue Reading <span>{title} </span>
+      Read <span>{title} </span>
     </Link>
   )
 }

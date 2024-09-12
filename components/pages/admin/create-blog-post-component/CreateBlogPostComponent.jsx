@@ -39,8 +39,8 @@ function CreateBlogPostComponent() {
       <MainImageInput onChange={handleFileChange} />
       <TagsInput value={tags} onChange={handleInputChange} />
       <QuillEditor value={content} onChange={handleQuillChange} />
-      <PublishDateInput value={publishedDate} onChange={handleInputChange} />
-      <DraftToggle value={isDraft} onChange={handleInputChange} />
+      {/* <PublishDateInput value={publishedDate} onChange={handleInputChange} /> */}
+      {/* <DraftToggle value={isDraft} onChange={handleInputChange} /> */}
       <SEOMetaInput
         title={seoTitle}
         description={seoDescription}

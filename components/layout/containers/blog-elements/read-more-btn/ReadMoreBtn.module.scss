@@ -13,22 +13,23 @@
     font-weight: var(--fw-600);
     text-transform: capitalize;
     line-height: 1.5;
-
+    
     @include breakpoint(tab) {
         grid-area: readMore;
     }
-
+    
     &:hover, &:focus {
         background-color: hsl(var(--primary-color));
         color: hsl(var(--background-color-3));
         box-shadow: var(--box-shadow-md);
-
+        
         & span {
             color: hsl(var(--background-color-3));
         }
     }
-
+    
     & span {
-    color: hsl(var(--primary-color));
+        transition: var(--transition-main);
+        color: hsl(var(--primary-color));
     }
 }
