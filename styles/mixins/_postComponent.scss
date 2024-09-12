@@ -1,6 +1,6 @@
-@use '../../../../styles/mixins' as *;
+@use './breakpoints' as *;
 
-.featuredPostsComponent {
+@mixin postComponent {
     width: var(--standard-width);
     margin: var(--spacing-800) auto;
 
@@ -24,7 +24,7 @@
             gap: var(--spacing-200);
 
             @include breakpoint(tab) {
-                width: 50%;
+                width: 40%;
             }
 
             @include breakpoint(laptop) {
