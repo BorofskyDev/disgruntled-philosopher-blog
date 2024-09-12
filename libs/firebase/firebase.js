@@ -16,13 +16,8 @@ const firebaseConfig = {
   measurementId: process.env.NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID,
 }
 
-// Only initialize Firebase in the client (browser environment)
-let firebaseApp
-if (typeof window !== 'undefined' && !getApps().length) {
-  firebaseApp = initializeApp(firebaseConfig)
-} else {
-  firebaseApp = getApp()
-}
+// Initialize Firebase (works on both client and server-side)
+const firebaseApp = !getApps().length ? initializeApp(firebaseConfig) : getApp()
 
 // Firebase services
 const db = getFirestore(firebaseApp)
