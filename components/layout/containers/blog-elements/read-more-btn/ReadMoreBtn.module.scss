@@ -9,6 +9,10 @@
     box-shadow: var(--box-shadow-xsm);
     background-color: hsl(var(--background-color-3));
     transition: var(--transition-main);
+    font-size: var(--fs-500);
+    font-weight: var(--fw-600);
+    text-transform: capitalize;
+    line-height: 1.5;
 
     @include breakpoint(tab) {
         grid-area: readMore;
@@ -18,11 +22,13 @@
         background-color: hsl(var(--primary-color));
         color: hsl(var(--background-color-3));
         box-shadow: var(--box-shadow-md);
+
+        & span {
+            color: hsl(var(--background-color-3));
+        }
     }
 
     & span {
-        font-size: var(--fs-500);
-        font-weight: var(--fw-600);
-        text-transform: capitalize;
+    color: hsl(var(--primary-color));
     }
 }
