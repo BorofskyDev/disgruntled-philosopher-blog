@@ -3,6 +3,11 @@ import { useFetchPublishedPosts } from '@/libs/hooks/useFetchPublishedPosts'
 import styles from './LatestPost.module.scss'
 import PostImage from '../blog-elements/post-image/PostImage'
 import PostTitle from '../blog-elements/post-title/PostTitle'
+import PostDescription from '../blog-elements/post-description/PostDescription'
+import PostDate from '../blog-elements/post-date/PostDate'
+import PostTags from '../blog-elements/post-tags/PostTags'
+import SubSectionHeading from '../../headings/sub-section-heading/SubSectionHeading'
+import ReadMoreBtn from '../blog-elements/read-more-btn/ReadMoreBtn'
 
 function LatestPost() {
   const { posts, loading, error } = useFetchPublishedPosts()
@@ -28,29 +33,17 @@ function LatestPost() {
         alt={latestPost.title}
         className={styles.latestPost__mainImage}
       />
-      <PostTitle className={styles.latestPost__title}  title={latestPost.title} />
-      <p className={styles.latestPost__date}>
-        Published on:{' '}
-        {new Date(latestPost.publishDate.seconds * 1000).toLocaleDateString()}
-      </p>
+      <PostTitle
+        className={styles.latestPost__title}
+        title={latestPost.title}
+      />
+      <PostDate publishDate={latestPost.publishDate} />
 
-    
-      <p className={styles.description}>
-        {latestPost.description.split('<br/>').map((text, index) => (
-          <React.Fragment key={index}>
-            {text}
-            <br />
-          </React.Fragment>
-        ))}
-      </p>
+      <PostDescription description={latestPost.description} />
+      <ReadMoreBtn slug={latestPost.slug} title={latestPost.title} />
+      <SubSectionHeading>Tags</SubSectionHeading>
+      <PostTags tags={latestPost.tags} />
 
-      <div className={styles.tags}>
-        {latestPost.tags?.map((tag, index) => (
-          <span key={index} className={styles.tag}>
-            {tag}
-          </span>
-        ))}
-      </div>
     </div>
   )
 }

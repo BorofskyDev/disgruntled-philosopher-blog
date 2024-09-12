@@ -1,0 +1,18 @@
+.postTags {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+
+    &__tag {
+        // margin: var(--spacing-400) auto;
+        padding: var(--spacing-300);
+        border: var(--border-100);
+        border-radius: var(--border-radius-pill);
+        box-shadow: var(--box-shadow-xsm);
+        background-color: hsl(var(--background-color-3));
+        text-transform: capitalize;
+        font-size: var(--fs-500);
+        font-weight: var(--fw-500);
+    }
+}
