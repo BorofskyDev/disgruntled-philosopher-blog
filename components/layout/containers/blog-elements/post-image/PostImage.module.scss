@@ -7,4 +7,8 @@
     border: var(--border-100);
     border-radius: var(--border-radius-8);
     box-shadow: var(--box-shadow-xsm);
+
+    @include breakpoint(tab) {
+        grid-area: image;
+    }
 }

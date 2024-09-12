@@ -1,11 +1,19 @@
+@use '../../../../../styles/mixins' as *;
+
 .postTags {
     display: flex;
     flex-wrap: wrap;
     align-items: center;
     justify-content: center;
+    gap: var(--spacing-400);
+    align-self: flex-end;
+
+    @include breakpoint(tab) {
+        grid-area: date;
+    }
 
     &__tag {
-        // margin: var(--spacing-400) auto;
+        margin: 0 var(--spacing-400);
         padding: var(--spacing-300);
         border: var(--border-100);
         border-radius: var(--border-radius-pill);

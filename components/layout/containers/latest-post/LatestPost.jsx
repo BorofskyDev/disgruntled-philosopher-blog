@@ -6,7 +6,6 @@ import PostTitle from '../blog-elements/post-title/PostTitle'
 import PostDescription from '../blog-elements/post-description/PostDescription'
 import PostDate from '../blog-elements/post-date/PostDate'
 import PostTags from '../blog-elements/post-tags/PostTags'
-import SubSectionHeading from '../../headings/sub-section-heading/SubSectionHeading'
 import ReadMoreBtn from '../blog-elements/read-more-btn/ReadMoreBtn'
 
 function LatestPost() {
@@ -41,9 +40,7 @@ function LatestPost() {
 
       <PostDescription description={latestPost.description} />
       <ReadMoreBtn slug={latestPost.slug} title={latestPost.title} />
-      <SubSectionHeading>Tags</SubSectionHeading>
       <PostTags tags={latestPost.tags} />
-
     </div>
   )
 }

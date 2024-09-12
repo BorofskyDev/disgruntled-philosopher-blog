@@ -1,3 +1,9 @@
+@use '../../../../../styles/mixins' as *;
+
 .postDate {
     font-size: var(--fs-300);
+
+    @include breakpoint(tab) {
+        grid-area: date;
+    }
 }

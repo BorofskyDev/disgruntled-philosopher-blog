@@ -1,14 +1,18 @@
+@use '../../../../../styles/mixins' as *;
+
 .postDescription {
-    // margin-top: var(--spacing-400);
-    // margin-bottom: var(--spacing-400);
     padding: var(--spacing-200);
     border: var(--border-100);
     border-radius: var(--border-radius-8);
     box-shadow: var(--box-shadow-xsm);
     background-color: hsl(var(--background-color-3));
 
+    @include breakpoint(tab) {
+        grid-area: content;
+    }
+
     p {
-        // margin-bottom: var(--spacing-200);
+        margin-bottom: var(--spacing-200);
         line-height: 1.5;
     }
 }

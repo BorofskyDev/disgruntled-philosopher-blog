@@ -1,3 +1,5 @@
+@use '../../../../../styles/mixins' as *;
+
 .readMoreBtn {
     display: inline-block;
     // margin-top: var(--spacing-400);
@@ -7,6 +9,10 @@
     box-shadow: var(--box-shadow-xsm);
     background-color: hsl(var(--background-color-3));
     transition: var(--transition-main);
+
+    @include breakpoint(tab) {
+        grid-area: readMore;
+    }
 
     &:hover, &:focus {
         background-color: hsl(var(--primary-color));
