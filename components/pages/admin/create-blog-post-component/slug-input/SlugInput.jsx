@@ -1,3 +1,4 @@
+'use client'
 import styles from './SlugInput.module.scss'
 
 function SlugInput({ value }) {

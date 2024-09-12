@@ -1,3 +1,4 @@
+'use client'
 import styles from './TagsInput.module.scss'
 
 const TagsInput = ({ value, onChange }) => (

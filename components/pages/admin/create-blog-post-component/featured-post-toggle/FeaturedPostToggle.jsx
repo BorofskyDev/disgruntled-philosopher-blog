@@ -1,3 +1,4 @@
+'use client'
 import styles from './FeaturedPostToggle.module.scss'
 
 const FeaturedPostToggle = ({ value, onChange }) => (

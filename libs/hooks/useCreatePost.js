@@ -1,9 +1,10 @@
 'use client'
-import { useState } from 'react'
+
+import { useState, useEffect } from 'react'
 import { collection, addDoc } from 'firebase/firestore'
 import { db } from '@/libs/firebase/firebase'
 import { Timestamp } from 'firebase/firestore'
-import { useRouter } from 'next/router'
+import { useRouter } from 'next/navigation' // Using next/navigation for client-side routing
 
 export const useCreatePost = () => {
   const [title, setTitle] = useState('')
@@ -18,7 +19,13 @@ export const useCreatePost = () => {
   const [seoDescription, setSeoDescription] = useState('')
   const [isFeatured, setIsFeatured] = useState(false)
 
+  // Using state to ensure the router is only used on the client
+  const [isClient, setIsClient] = useState(false)
   const router = useRouter()
+
+  useEffect(() => {
+    setIsClient(true) // Set client flag to true after the component mounts
+  }, [])
 
   const handleInputChange = (e) => {
     const { name, value, type, checked } = e.target
@@ -87,13 +94,14 @@ export const useCreatePost = () => {
         isFeatured,
       })
 
-      router.push('/admin') // Redirect after creation
+      // Ensure router push is only called on the client
+      if (isClient) {
+        router.push('/admin') // Redirect after creation
+      }
     } catch (err) {
       console.error('Failed to create post:', err)
     }
   }
-
-
 
   return {
     title,

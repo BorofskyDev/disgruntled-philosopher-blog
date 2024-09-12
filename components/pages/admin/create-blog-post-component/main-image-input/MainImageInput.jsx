@@ -1,3 +1,4 @@
+'use client'
 import styles from './MainImageInput.module.scss'
 
 const MainImageInput = ({ onChange }) => (

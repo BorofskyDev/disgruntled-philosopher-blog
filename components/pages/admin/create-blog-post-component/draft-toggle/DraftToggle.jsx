@@ -1,3 +1,4 @@
+'use client'
 import styles from './DraftToggle.module.scss'
 
 const DraftToggle = ({ value, onChange }) => (

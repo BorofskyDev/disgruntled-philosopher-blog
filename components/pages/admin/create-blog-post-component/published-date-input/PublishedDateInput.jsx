@@ -1,3 +1,4 @@
+'use client'
 import styles from './PublishedDateInput.module.scss'
 
 const PublishDateInput = ({ value, onChange }) => (

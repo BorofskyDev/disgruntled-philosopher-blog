@@ -1,3 +1,4 @@
+'use client'
 import styles from './TitleInput.module.scss'
 
 function TitleInput({ value, onChange }) {

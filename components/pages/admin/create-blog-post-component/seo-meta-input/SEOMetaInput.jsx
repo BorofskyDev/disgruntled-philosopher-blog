@@ -1,3 +1,4 @@
+'use client'
 import styles from './SEOMetaInput.module.scss'
 
 const SEOMetaInput = ({ title, description, onChange }) => (
