@@ -7,6 +7,7 @@ import PostDescription from '../blog-elements/post-description/PostDescription'
 import PostDate from '../blog-elements/post-date/PostDate'
 import PostTags from '../blog-elements/post-tags/PostTags'
 import ReadMoreBtn from '../blog-elements/read-more-btn/ReadMoreBtn'
+import PostContainer from '../post-container/PostContainer'
 
 function LatestPost() {
   const { posts, loading, error } = useFetchPublishedPosts()
@@ -26,14 +27,12 @@ function LatestPost() {
   }
 
   return (
-    <div className={styles.latestPost}>
+    <PostContainer className={styles.latestPost}>
       <PostImage
         src={latestPost.mainImage}
         alt={latestPost.title}
-        className={styles.latestPost__mainImage}
       />
       <PostTitle
-        className={styles.latestPost__title}
         title={latestPost.title}
       />
       <PostDate publishDate={latestPost.publishDate} />
@@ -41,7 +40,7 @@ function LatestPost() {
       <PostDescription description={latestPost.description} />
       <ReadMoreBtn slug={latestPost.slug} title={latestPost.title} />
       <PostTags tags={latestPost.tags} />
-    </div>
+    </PostContainer>
   )
 }
 
