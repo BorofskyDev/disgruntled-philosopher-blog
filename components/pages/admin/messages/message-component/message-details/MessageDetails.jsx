@@ -28,7 +28,9 @@ function MessageDetails({ message, onClose }) {
 
   return (
     <div className={styles.messageDetails}>
-      <button className={styles.messageDetails__close} onClick={onClose}>Close</button>
+      <button className={styles.messageDetails__close} onClick={onClose}>
+        Close
+      </button>
       <h2>Message from {message.name}</h2>
       <p>
         <strong>Email:</strong> {message.email}
@@ -46,8 +48,15 @@ function MessageDetails({ message, onClose }) {
       <p>
         <strong>Sent on:</strong> {new Date(message.createdAt).toLocaleString()}
       </p>
-      <button className={styles.messageDetails__delete} onClick={handleDelete}>Delete</button>
-      <button className={styles.messageDetails__unread} onClick={handleMarkAsUnread}>Mark as Unread</button>
+      <button className={styles.messageDetails__delete} onClick={handleDelete}>
+        Delete
+      </button>
+      <button
+        className={styles.messageDetails__unread}
+        onClick={handleMarkAsUnread}
+      >
+        Mark as Unread
+      </button>
     </div>
   )
 }
