@@ -5,6 +5,12 @@ import PostContainer from '@/components/layout/containers/post-container/PostCon
 import SectionHeader from '@/components/layout/headings/section-header/SectionHeader'
 import image from '@/public/notFound.png'
 
+export const generateMetadata = {
+  title: '404 | The Disgruntled Philosopher',
+  description:
+    "Lost in thought? Looks like the page you're searching for doesn’t exist. Head back to The Disgruntled Philosopher and explore ideas, opinions, and reflections that actually exist. Let’s get you back on track.",
+}
+
 function NotFound() {
   return (
     <section>

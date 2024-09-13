@@ -1,3 +1,4 @@
+'use client'
 import { useState } from 'react'
 import { useFetchPublishedPosts } from '@/libs/hooks/useFetchPublishedPosts'
 import styles from './AllBlogPosts.module.scss'

@@ -6,6 +6,12 @@ import PageLink from '@/components/links/page-link/PageLink'
 import AdminRecentPosts from '@/components/pages/admin/admin-recent-posts/AdminRecentPosts'
 import styles from './AdminPage.module.scss'
 
+export const generateMetadata = {
+  title: 'Admin | The Disgruntled Philosopher',
+  description: 'Admin page for The Disgruntled Philosopher blog.',
+  
+}
+
 function AdminPage() {
   const router = useRouter()
   const { user, loading: authLoading } = useAuth()
