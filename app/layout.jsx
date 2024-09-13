@@ -11,15 +11,16 @@ export const metadata = {
   title: 'The Disgruntled Philosopher',
   description:
     'The Disgruntled Philosopher is a personal blog reflecting on politics, life, society, and the journey from evangelicalism to pragmatic humanitarianism.',
+  metadataBase: new URL('https://disgruntled-philosopher-blog-dev.vercel.app'),
 
   openGraph: {
     title: 'The Disgruntled Philosopher',
     description: 'Personal blog on politics, life, and philosophy.',
-    // url: 'https://your-domain.com', 
+
     siteName: 'The Disgruntled Philosopher',
     images: [
       {
-        // url: '/path-to-your-default-image.png', 
+        url: '/api/og',
         width: 1200,
         height: 630,
         alt: 'The Disgruntled Philosopher',
@@ -29,10 +30,10 @@ export const metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    // site: '@your-twitter-handle', 
+    // site: '@your-twitter-handle',
     title: 'The Disgruntled Philosopher',
     description: 'Personal blog on politics, life, and philosophy.',
-    image: '/path-to-your-default-image.png',
+    image: '/api/og',
   },
   alternates: {
     // canonical: 'https://your-domain.com',
