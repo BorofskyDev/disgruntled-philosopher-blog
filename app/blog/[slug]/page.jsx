@@ -1,9 +1,9 @@
 import BlogPostComponent from '@/components/pages/blog/blog-post/BlogPostComponent'
-import { fetchPostBySlug } from '@/libs/api'
+import { getPostBySlug } from '@/libs/api'
 
 
 export async function generateMetadata({ params }) {
-  const post = await fetchPostBySlug(params.slug)
+  const post = await getPostBySlug(params.slug)
 
   return {
     title: post
@@ -29,7 +29,7 @@ export async function generateMetadata({ params }) {
 }
 
 export default async function BlogPostPage({ params }) {
-  const post = await fetchPostBySlug(params.slug)
+  const post = await getPostBySlug(params.slug)
 
   if (!post) {
     return <div>Post not found</div>

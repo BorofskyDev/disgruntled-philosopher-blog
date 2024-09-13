@@ -1,7 +1,7 @@
 import SectionHeader from '@/components/layout/headings/section-header/SectionHeader'
 import AboutComponent from '@/components/pages/about/AboutComponent'
 
-// Adding metadata for the About Page
+
 export const generateMetadata = () => {
   return {
     title: 'About | The Disgruntled Philosopher',

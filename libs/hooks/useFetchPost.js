@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react'
-import { collection, query, where, getDocs } from 'firebase/firestore'
-import { db } from '@/libs/firebase/firebase'
+import { fetchPostBySlug } from '@/libs/functions/fetchPostBySlug'
 
 export const useFetchPost = (slug) => {
   const [post, setPost] = useState(null)
@@ -10,23 +9,14 @@ export const useFetchPost = (slug) => {
   useEffect(() => {
     const fetchPost = async () => {
       setLoading(true)
-      try {
-        
-        const q = query(collection(db, 'blogPosts'), where('slug', '==', slug))
-        const querySnapshot = await getDocs(q)
+      const post = await fetchPostBySlug(slug)
 
-        if (!querySnapshot.empty) {
-          
-          const docSnap = querySnapshot.docs[0]
-          setPost(docSnap.data())
-        } else {
-          setError('Post not found.')
-        }
-      } catch (err) {
-        setError('Failed to load post.')
-      } finally {
-        setLoading(false)
+      if (post) {
+        setPost(post)
+      } else {
+        setError('Post not found.')
       }
+      setLoading(false)
     }
 
     if (slug) {

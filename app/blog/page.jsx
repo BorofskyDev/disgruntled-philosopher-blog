@@ -3,7 +3,8 @@
 import AllBlogPosts from '@/components/layout/containers/all-blog-posts/AllBlogPosts'
 import SectionHeader from '@/components/layout/headings/section-header/SectionHeader'
 
-export const generateMetadata = {
+export const generateMetadata = () =>  {
+  return {
   title: 'Blog Posts | The Disgruntled Philosopher',
   description:
     'Read all blog posts from The Disgruntled Philosopher. Explore a variety of topics, including politics, philosophy, religion, and personal reflections. Dive into the mind of a pragmatic humanitarian and former evangelical as he shares his thoughts on life, society, and the world around us.',
@@ -29,7 +30,7 @@ export const generateMetadata = {
     description:
       'Read all blog posts from The Disgruntled Philosopher. Explore a variety of topics, including politics, philosophy, religion, and personal reflections.',
     image: '/path-to-your-image.png',
-  },
+  },}
 }
 
 export default function BlogPostsList() {
