@@ -9,6 +9,9 @@ const body = openSans
 
 export const metadata = {
   title: 'The Disgruntled Philosopher',
+  icons: {
+    icon: '/favicon.ico'
+  },
   description:
     'The Disgruntled Philosopher is a personal blog reflecting on politics, life, society, and the journey from evangelicalism to pragmatic humanitarianism.',
   metadataBase: new URL('https://disgruntled-philosopher-blog-dev.vercel.app'),
@@ -55,12 +58,16 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang='en'>
+      <head>
+        <meta name='viewport' content='width=device-width, initial-scale=1' />
+       
+      </head>
       <body className={`${header.variable} ${body.variable}`}>
         <ThemeProvider>
           <Header />
           {children}
           <Footer />
-          </ThemeProvider>
+        </ThemeProvider>
       </body>
     </html>
   )
