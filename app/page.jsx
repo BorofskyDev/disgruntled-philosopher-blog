@@ -14,8 +14,7 @@ export async function generateMetadata() {
         'Discover the latest musings on politics, life, and philosophy from The Disgruntled Philosopher.',
       images: [
         {
-          // Placeholder for dynamically generated image
-          url: `/api/og-homepage-snapshot`,
+          url: `/api/og`, // Use the /og route to dynamically generate the image
           width: 1200,
           height: 630,
           alt: 'The Disgruntled Philosopher Homepage',
@@ -27,6 +26,7 @@ export async function generateMetadata() {
     },
   }
 }
+
 
 
 export default function Home() {
