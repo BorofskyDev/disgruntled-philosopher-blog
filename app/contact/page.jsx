@@ -1,6 +1,15 @@
+import ContactForm from '@/components/pages/contact/ContactForm'
+
+const {
+  default: SectionHeader,
+} = require('@/components/layout/headings/section-header/SectionHeader')
+
 function ContactPage() {
   return (
-    <div>ContactPage</div>
+    <section>
+      <SectionHeader>Contact Me</SectionHeader>
+      <ContactForm />
+    </section>
   )
 }
 export default ContactPage

@@ -1,0 +1,6 @@
+@use '../../../styles/mixins' as *;
+
+.contactComponent {
+    width: var(--standard-width);
+    margin: var(--spacing-800) auto;
+}
