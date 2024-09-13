@@ -1,24 +1,38 @@
 import { useState, useEffect } from 'react'
-import { collection, getDocs, query, where, orderBy } from 'firebase/firestore'
+import {
+  collection,
+  getDocs,
+  query,
+  where,
+  orderBy,
+  limit,
+} from 'firebase/firestore'
 import { db } from '@/libs/firebase/firebase'
 
-export const useFetchPublishedPosts = () => {
+export const useFetchPublishedPosts = (pageNumber = 1, postsPerPage = 6) => {
   const [posts, setPosts] = useState([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(null)
+  const [totalPosts, setTotalPosts] = useState(0)
 
   useEffect(() => {
     const fetchPosts = async () => {
       setLoading(true)
       try {
-        const now = new Date() 
+        const now = new Date()
 
-        
+        // Fetch total post count
+        const totalQuerySnapshot = await getDocs(
+          query(collection(db, 'blogPosts'))
+        )
+        setTotalPosts(totalQuerySnapshot.size)
+
         const q = query(
           collection(db, 'blogPosts'),
           where('publishDate', '<=', now),
           where('isDraft', '==', false),
-          orderBy('publishDate', 'desc')
+          orderBy('publishDate', 'desc'),
+          limit(postsPerPage) // Limit to fetch per page
         )
 
         const querySnapshot = await getDocs(q)
@@ -26,9 +40,6 @@ export const useFetchPublishedPosts = () => {
           id: doc.id,
           ...doc.data(),
         }))
-
-        
-        console.log('Fetched Posts:', postsArray)
 
         setPosts(postsArray)
       } catch (err) {
@@ -40,7 +51,7 @@ export const useFetchPublishedPosts = () => {
     }
 
     fetchPosts()
-  }, [])
+  }, [pageNumber, postsPerPage])
 
-  return { posts, loading, error }
+  return { posts, loading, error, totalPosts }
 }

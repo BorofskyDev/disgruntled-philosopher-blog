@@ -21,13 +21,14 @@ export const useEditPost = () => {
       if (docSnap.exists()) {
         const postData = docSnap.data()
 
+        // Format publishDate for the date input (YYYY-MM-DD format)
         const publishDate = postData.publishDate
           ? new Date(postData.publishDate.seconds * 1000)
               .toISOString()
-              .split('T')[0]
+              .split('T')[0] // Ensure the date is in YYYY-MM-DD format
           : ''
 
-        setPost({ ...postData, publishDate })
+        setPost({ ...postData, publishDate }) // Include the formatted date
         setLoading(false)
       } else {
         console.error('No such post!')
@@ -40,17 +41,25 @@ export const useEditPost = () => {
   const handleSubmit = async (e) => {
     e.preventDefault()
 
-    const publishDateAsTimestamp = post.publishDate
-      ? Timestamp.fromDate(new Date(post.publishDate))
-      : null
+    // Convert the date string to Firestore Timestamp
+    let publishDateAsTimestamp = null
+
+    if (post.publishDate) {
+      const parsedDate = new Date(post.publishDate + 'T00:00:00') // Convert the string date back to a valid date object
+      if (!isNaN(parsedDate.getTime())) {
+        publishDateAsTimestamp = Timestamp.fromDate(parsedDate) // Convert to Firestore Timestamp
+      } else {
+        console.error('Invalid publishDate format')
+      }
+    }
 
     const docRef = doc(db, 'blogPosts', postId)
+
     try {
       await updateDoc(docRef, {
         ...post,
-        publishDate: publishDateAsTimestamp,
+        publishDate: publishDateAsTimestamp, // Pass the valid Timestamp to Firestore
       })
-
       router.push('/admin')
     } catch (err) {
       console.error('Failed to update post:', err)
@@ -59,7 +68,12 @@ export const useEditPost = () => {
 
   const handleInputChange = (e) => {
     const { name, value, type, checked } = e.target
-    setPost({ ...post, [name]: type === 'checkbox' ? checked : value })
+
+    if (name === 'publishDate') {
+      setPost({ ...post, [name]: value }) // Store the date string in YYYY-MM-DD format
+    } else {
+      setPost({ ...post, [name]: type === 'checkbox' ? checked : value })
+    }
   }
 
   return {

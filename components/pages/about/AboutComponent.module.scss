@@ -2,6 +2,7 @@
 
 .aboutComponent {
   width: var(--standard-width);
+  max-width: 80rem;
   margin: var(--spacing-800) auto;
   padding: var(--spacing-400);
   border: var(--border-200);
