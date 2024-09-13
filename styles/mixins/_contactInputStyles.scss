@@ -1,0 +1,27 @@
+@mixin contactInputStyles {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  & label {
+    font-size: var(--fs-500);
+    font-weight: var(--fw-600);
+  }
+
+  & input,
+  & textarea {
+    padding: var(--spacing-200);
+    border: var(--border-100);
+    border-radius: var(--border-radius-8);
+    box-shadow: var(--box-shadow-xsm);
+    font-size: var(--fs-500);
+    transition: var(--transition-main);
+
+    &:active,
+    &:focus {
+      background-color: hsl(var(--primary-color));
+      color: hsl(var(--background-color-3));
+    }
+  }
+}

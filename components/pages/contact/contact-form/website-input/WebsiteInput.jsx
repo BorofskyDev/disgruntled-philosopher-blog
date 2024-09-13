@@ -2,10 +2,10 @@ import styles from './WebsiteInput.module.scss'
 
 function WebsiteInput({ website, setWebsite }) {
   return (
-    <div>
+    <div className={styles.websiteInput}>
       <label htmlFor='website'>Website (Optional)</label>
       <input
-        type='url'
+        type='text'
         id='website'
         name='website'
         value={website}

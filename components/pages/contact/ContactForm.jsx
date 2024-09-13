@@ -57,7 +57,7 @@ function ContactForm() {
 
   return (
     <div className={styles.contactComponent}>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} className={styles.contactComponent__form}>
         <ContactFormFields
           name={name}
           setName={setName}

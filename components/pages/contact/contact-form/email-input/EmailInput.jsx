@@ -2,7 +2,7 @@ import styles from './EmailInput.module.scss'
 
 function EmailInput({ email, setEmail }) {
   return (
-    <div>
+    <div className={styles.emailInput}>
       <label htmlFor='email'>Email</label>
       <input
         type='email'
