@@ -30,7 +30,7 @@ function AdminPage() {
       <div className={styles.adminPage__adminLinks}>
         <h2>Admin Links</h2>
       <PageLink href='/admin/create-blog-post'>Create Blog Post</PageLink>
-
+      <PageLink href='/admin/messages'>Messages</PageLink>
       </div>
       <div className={styles.adminPage__adminInfo}>
         <h2>Admin Info</h2>

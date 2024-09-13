@@ -1,0 +1,51 @@
+@use '../../../../../../styles/mixins' as *;
+
+.messageDetails {
+    margin: var(--spacing-800) auto;
+    padding: var(--spacing-800);
+    display: grid;
+    place-content: center;
+    gap: var(--spacing-200);
+    border: var(--border-100);
+    border-radius: var(--border-radius-6);
+    box-shadow: var(--box-shadow-md);
+    background-color: hsl(var(--background-color-3));
+
+    &__close, &__delete, &__unread {
+        padding: var(--spacing-100) var(--spacing-300);
+        border: var(--border-100);
+        border-radius: var(--border-radius-6);
+        box-shadow: var(--box-shadow-xsm);
+        font-weight: var(--fw-600);
+        transition: var(--transition-main);
+        cursor: pointer;
+    }
+
+    &__close {
+        &:hover, &:focus {
+            background-color: hsl(var(--background-color-1));
+            box-shadow: var(--box-shadow-sm);
+        }
+    }
+
+    &__delete {
+        background-color: hsl(var(--secondary-color));
+        color: hsl(var(--background-color-3));
+
+        &:hover, &:focus {
+            background-color: hsl(var(--accent-color));
+            box-shadow: var(--box-shadow-sm);
+        }
+    }
+
+    &__unread {
+        background-color: hsl(var(--primary-color));
+        color: hsl(var(--background-color-3));
+
+        &:hover, &:focus {
+            background-color: hsl(var(--background-color-2));
+            color: hsl(var(--text-color));
+            box-shadow: var(--box-shadow-sm);
+        }
+    }
+}

@@ -1,0 +1,34 @@
+@use '../../../../../../styles/mixins' as *;
+
+.messageList {
+  width: var(--standard-width);
+  margin: var(--spacing-800) auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--spacing-400);
+
+  & li {
+    width: 100%;
+    padding: var(--spacing-100);
+    border: var(--border-100);
+    border-radius: var(--border-radius-8);
+    box-shadow: var(--box-shadow-xsm);
+    background-color: hsl(var(--background-color-3));
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: var(--spacing-400);
+    cursor: pointer;
+
+    & p {
+      text-transform: capitalize;
+    }
+}
+.unread {
+  background-color: hsl(var(--primary-color));
+  color: hsl(var(--background-color-3));
+
+  
+}
+}

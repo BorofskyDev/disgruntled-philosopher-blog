@@ -42,6 +42,8 @@ function ContactForm() {
       message,
       phone: phone || null,
       website: normalizedWebsite || null,
+      isRead: false, 
+      createdAt: new Date(),
     }
 
     const result = await sendMessage(messageData)
@@ -54,6 +56,7 @@ function ContactForm() {
       setErrorMessage(result.error)
     }
   }
+
 
   return (
     <div className={styles.contactComponent}>
