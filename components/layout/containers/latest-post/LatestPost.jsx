@@ -1,5 +1,5 @@
-import React from 'react'
-import { useFetchPublishedPosts } from '@/libs/hooks/useFetchPublishedPosts'
+
+'use client'
 import styles from './LatestPost.module.scss'
 import PostImage from '../blog-elements/post-image/PostImage'
 import PostTitle from '../blog-elements/post-title/PostTitle'
@@ -8,6 +8,7 @@ import PostDate from '../blog-elements/post-date/PostDate'
 import PostTags from '../blog-elements/post-tags/PostTags'
 import ReadMoreBtn from '../blog-elements/read-more-btn/ReadMoreBtn'
 import PostContainer from '../post-container/PostContainer'
+import { useFetchPublishedPosts } from '@/libs/hooks/useFetchPublishedPosts'
 
 function LatestPost() {
   const { posts, loading, error } = useFetchPublishedPosts()

@@ -1,8 +1,8 @@
 import { playfairDisplay, openSans } from './fonts'
-import '../styles/globals.scss'
 import { ThemeProvider } from 'next-themes'
 import Header from '@/components/layout/header/Header'
 import Footer from '@/components/layout/footer/Footer'
+import '../styles/globals.scss'
 
 const header = playfairDisplay
 const body = openSans

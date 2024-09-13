@@ -5,27 +5,30 @@ import { getPostBySlug } from '@/libs/api'
 export async function generateMetadata({ params }) {
   const post = await getPostBySlug(params.slug)
 
-  return {
-    title: post
-      ? `${post.title} | The Disgruntled Philosopher`
-      : 'Post Not Found',
-    description: post
-      ? post.seoDescription
-      : 'No description available for this post',
-    openGraph: {
-      title: post?.title || 'Post Not Found',
-      description: post?.seoDescription || 'No description available',
-      url: `/blog/${params.slug}`,
-      images: [
-        {
-          url: post?.mainImage || '/default-image.png',
-          alt: post?.title || 'Post Not Found',
-          width: 1200,
-          height: 630,
-        },
-      ],
-    },
-  }
+   if (!post) {
+     return {
+       title: 'Post not found',
+       description: 'This post could not be found.',
+     }
+   }
+
+   return {
+     title: `${post.title} | The Disgruntled Philosopher`,
+     description:
+       post.description || 'Read more on The Disgruntled Philosopher.',
+     openGraph: {
+       title: post.title,
+       description: post.description,
+       images: [
+         {
+           url: `/api/og?title=${encodeURIComponent(post.title)}`,
+           width: 1200,
+           height: 630,
+           alt: post.title,
+         },
+       ],
+     },
+   }
 }
 
 export default async function BlogPostPage({ params }) {

@@ -1,3 +1,4 @@
+'use client'
 import { useFetchPublishedPosts } from '@/libs/hooks/useFetchPublishedPosts'
 import PostTitle from '@/components/layout/containers/blog-elements/post-title/PostTitle'
 import styles from './LatestPostsComponent.module.scss'

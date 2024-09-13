@@ -1,9 +1,10 @@
-import { useFetchFeaturedPosts } from '@/libs/hooks/useFetchFeaturedPosts'
+'use client'
 import styles from './FeaturedPostsComponent.module.scss'
 import PostTitle from '@/components/layout/containers/blog-elements/post-title/PostTitle'
 import PostDescription from '@/components/layout/containers/blog-elements/post-description/PostDescription'
 import ReadMoreBtn from '@/components/layout/containers/blog-elements/read-more-btn/ReadMoreBtn' // Ensure to import the ReadMoreBtn
 import PostImage from '@/components/layout/containers/blog-elements/post-image/PostImage'
+import { useFetchFeaturedPosts } from '@/libs/hooks/useFetchFeaturedPosts'
 
 function FeaturedPostsComponent() {
   const { posts, loading, error } = useFetchFeaturedPosts(4) // Limit to 4 posts
