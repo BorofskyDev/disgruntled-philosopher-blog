@@ -3,7 +3,7 @@ import { ImageResponse } from '@vercel/og'
 
 export const runtime = 'edge'
 
-export default async function handler(req) {
+export async function GET(req) {
   const { searchParams } = new URL(req.url)
   const title = searchParams.get('title') || 'The Disgruntled Philosopher'
 
@@ -12,7 +12,7 @@ export default async function handler(req) {
       'div',
       {
         style: {
-          fontSize: '128px',
+          fontSize: '64px',
           background: 'white',
           width: '100%',
           height: '100%',
