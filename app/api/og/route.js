@@ -1,9 +1,7 @@
 import React from 'react'
 import { ImageResponse } from '@vercel/og'
 
-export const config = {
-  runtime: 'edge',
-}
+export const runtime = 'edge'
 
 export default async function handler(req) {
   const { searchParams } = new URL(req.url)
